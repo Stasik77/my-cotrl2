@@ -8,6 +8,7 @@ type CounterType = {
     results: number | null;
     onIncrement: () => void;
     onReset: () => void;
+    isNumberDone: boolean;
 }
 
 
@@ -19,17 +20,28 @@ const Counter = (props: CounterType) => {
 
     const onClickHandler = () => {
         props.onIncrement()
+
     }
 
     const onClickResetHandler = () => {
         props.onReset()
     }
 
+
     return (
         <div className="app-header">
             <div className="app">
                 <div className="counter_title">
-                    <h1 className={props.results === props.maxValues ? 'num_isDon' : 'num'}>{props.results}</h1>
+                    <h1 className={props.results === props.maxValues ? 'num_isDon' : 'num'}>
+
+                        {props.results === null || props.results === undefined
+                            ? 'enter value and press \'set\''
+                            : props.isNumberDone
+                                ? <span className="error_text">Incorrect value</span>
+                                : props.results
+                        }
+
+                    </h1>
 
                 </div>
                 <div className="block_bnt">
