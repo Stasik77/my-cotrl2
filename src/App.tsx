@@ -4,10 +4,17 @@ import Counter from './Counter';
 import Button from './Button';
 
 
-function App() {
+const MIN_VALUE_DEFAULT = 0
+const MAX_VALUE_DEFAULT = 0
 
-    const [maxValues, setMaxvalues] = useState<number>(0);
-    const [minValues, setMinValues] = useState<number>(0);
+function App() {
+    const [settingStore, setSettingsStore] = useState({
+        maxValue: 10,
+        minValue: 0,
+        isSettingsProcess: true,
+    })
+    const [maxValues, setMaxvalues] = useState<number>(MAX_VALUE_DEFAULT);
+    const [minValues, setMinValues] = useState<number>(MIN_VALUE_DEFAULT);
     const [results, setResults] = useState<number | null>(null);
 
 
@@ -37,23 +44,19 @@ function App() {
 
 
     useEffect(() => {
-        localStorage.setItem('CounterMaxValue', JSON.stringify(maxValues));
-    }, [maxValues]);
-
-    useEffect(() => {
-        localStorage.setItem('CounterMinValue', JSON.stringify(minValues));
-    }, [minValues]);
-
-    useEffect(() => {
         localStorage.setItem('CounterResValue', JSON.stringify(results));
     }, [results]);
 
-    const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxvalues(parseFloat(e.currentTarget.value))
+    const changeHandlerMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+        const newMaxValue = parseFloat(e.currentTarget.value)
+        localStorage.setItem('CounterMaxValue', JSON.stringify(newMaxValue));
+        setMaxvalues(newMaxValue)
 
     }
-    const changeHandler2 = (e: ChangeEvent<HTMLInputElement>) => {
-        setMinValues(parseFloat(e.currentTarget.value))
+    const changeHandlerMinValue = (e: ChangeEvent<HTMLInputElement>) => {
+        const newMinValue = parseFloat(e.currentTarget.value)
+        localStorage.setItem('CounterMinValue', JSON.stringify(newMinValue));
+        setMinValues(newMinValue)
 
     }
     const changeHandlerRes = () => {
@@ -73,23 +76,25 @@ function App() {
     const isNumberDone = minValues >= maxValues || minValues === maxValues || minValues < 0 || maxValues < 0;
 
 
+    const errorClass = isNumberDone ? 'error' : ''
+
     return (
         <div className="App">
             <div className="counter_app">
                 <div className="counter_border">
                     <div><span>max value : </span>
-                        <input className={isNumberDone ? 'error' : ''}
+                        <input className={errorClass}
                                type="number"
                                value={maxValues}
-                               onChange={changeHandler}
+                               onChange={changeHandlerMaxValue}
                         />
                     </div>
                     <div>
                         <span>start value : </span>
-                        <input className={isNumberDone ? 'error' : ''}
+                        <input className={errorClass}
                                type="number"
                                value={minValues}
-                               onChange={changeHandler2}
+                               onChange={changeHandlerMinValue}
                         /></div>
 
                 </div>
