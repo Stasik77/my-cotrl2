@@ -96,7 +96,6 @@ function App() {
                                value={minValues}
                                onChange={changeHandlerMinValue}
                         /></div>
-
                 </div>
                 <div>
                     <div>
@@ -117,12 +116,9 @@ function App() {
                 onIncrement={onIncrement}
                 onReset={onReset}
                 isNumberDone={isNumberDone}
-
             />
-
         </div>
     )
-
 }
 
 
