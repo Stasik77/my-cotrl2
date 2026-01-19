@@ -24,19 +24,7 @@ function App() {
         const savedRes = localStorage.getItem('CounterResValue');
 
 
-        // if (savedMax) {
-        //     let newValue = JSON.parse(savedMax);
-        //     setMaxValues(newValue);
-        // }
-        //    if (savedMin) {
-        //     let newValue = JSON.parse(savedMax);
-        //     setMinValues(newValue);
-        // }
-        //    if (savedRes) {
-        //     let newValue = JSON.parse(savedMax);
-        //     setResults(newValue);
-        // }
-        //
+
         if (savedMax) setMaxvalues(JSON.parse(savedMax));
         if (savedMin) setMinValues(JSON.parse(savedMin));
         if (savedRes) setResults(JSON.parse(savedRes));
