@@ -9,7 +9,7 @@
 
 }
 .counter_app{
-  border: 3px solid #3BE4CDFF;
+  border: 4px solid #3BE4CDFF;
   background-color: #282c34;
   min-height: 100px;
    width: 250px;
@@ -26,7 +26,7 @@
   justify-content: center;
   font-size:25px;
   color: white;
-  border: 3px solid #3BE4CDFF;
+  border: 4px solid #3BE4CDFF;
   border-radius: 3px;
   width: 250px;
 }
